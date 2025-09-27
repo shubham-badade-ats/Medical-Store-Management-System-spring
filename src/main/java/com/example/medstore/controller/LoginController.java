@@ -35,7 +35,6 @@ import com.example.medstore.security.MyUserDetailsService;
 @RestController
 @RequestMapping("/login")
 @CrossOrigin
-
 public class LoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -63,7 +62,7 @@ public class LoginController {
 
 	    if (userList != null && !userList.isEmpty() && userList.get(0).getUserIsDeleted() == 0) {
 
-	        if (passwordEncoder.matches(userPassword, userList.get(0).getUserPassword())) {
+	        if (userPassword.equals(userList.get(0).getUserPassword())) {
 
 	            final UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
 	            final String jwt = jwtTokenUtil.generateToken(userDetails);

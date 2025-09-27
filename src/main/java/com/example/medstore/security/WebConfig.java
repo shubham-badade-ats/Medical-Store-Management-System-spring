@@ -46,20 +46,20 @@ public class WebConfig {
 	@Bean
 	protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
  
-	httpSecurity.cors().and().csrf().disable().authorizeRequests().requestMatchers("/login/**").permitAll().requestMatchers("/forgot/**").permitAll().requestMatchers("/stationTagDetails/**").permitAll()
-//
-				.anyRequest().authenticated().and().exceptionHandling().and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
- 
-//		httpSecurity.requiresChannel().anyRequest().requiresSecure();
- 
+//	httpSecurity.cors().and().csrf().disable().authorizeRequests().requestMatchers("/login/**").permitAll().requestMatchers("/forgot/**").permitAll().requestMatchers("/stationTagDetails/**").permitAll()
 ////
-//		httpSecurity.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
-//				.authorizeHttpRequests(auth -> auth.requestMatchers("/login/**").permitAll().requestMatchers("/forgot/**").permitAll()
-//                        .anyRequest().authenticated())
-//				.exceptionHandling(ex -> ex.authenticationEntryPoint(point))
-//
-//			.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+//				.anyRequest().authenticated().and().exceptionHandling().and().sessionManagement()
+//				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+// 
+//	httpSecurity.requiresChannel().anyRequest().requiresSecure();
+// 
+////
+	httpSecurity.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
+			.authorizeHttpRequests(auth -> auth.requestMatchers("/login/**").permitAll().requestMatchers("/forgot/**").permitAll()
+                       .anyRequest().authenticated())
+			.exceptionHandling(ex -> ex.authenticationEntryPoint(point))
+
+		.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
  
 	httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		return httpSecurity.build();
