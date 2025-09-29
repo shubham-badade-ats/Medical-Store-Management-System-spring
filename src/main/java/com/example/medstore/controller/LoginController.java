@@ -33,7 +33,7 @@ import com.example.medstore.security.MyUserDetailsService;
 
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/api/login")
 @CrossOrigin
 public class LoginController {
 

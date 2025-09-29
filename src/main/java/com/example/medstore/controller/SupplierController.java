@@ -8,12 +8,16 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/suppliers")
+@CrossOrigin
 public class SupplierController {
     private final SupplierService service;
     public SupplierController(SupplierService service){this.service=service;}
 
     @GetMapping
-    public List<Supplier> list(){return service.findAll();}
+    public List<Supplier> list(){
+    	
+    	System.out.println("In Contoller");
+    	return service.findAll();}
 
     @GetMapping("/{id}")
     public Supplier get(@PathVariable Long id){return service.findById(id);}

@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/invoices")
+@CrossOrigin
 public class InvoiceController {
     private final InvoiceService service;
     public InvoiceController(InvoiceService service){this.service=service;}
