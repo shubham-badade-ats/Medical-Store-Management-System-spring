@@ -51,7 +51,7 @@ public class WebConfig {
 	        .cors() // ✅ Enable CORS (do NOT disable it)
 	        .and()
 	        .authorizeHttpRequests(auth -> auth
-	            .requestMatchers("/login/**", "/forgot/**").permitAll()
+	            .requestMatchers("/api/login/**", "/forgot/**").permitAll()
 	            .anyRequest().authenticated()
 	        )
 	        .exceptionHandling(ex -> ex.authenticationEntryPoint(point))
