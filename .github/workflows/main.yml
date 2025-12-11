@@ -1,0 +1,27 @@
+name: DevSecOps Pipeline
+
+on: 
+  push:
+  workflow_dispatch: 
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # SonarQube
+    - name: Run Sonar Scanner
+      run: sonar-scanner
+
+    # OWASP Dependency Check
+    - name: Dependency Check
+      run: dependency-check.sh --scan . --out reports
+
+    # Build Docker Image
+    - run: docker build -t myapp .
+
+    # Trivy Image Scan
+    - name: Trivy Image Scan
+      run: trivy image myapp
